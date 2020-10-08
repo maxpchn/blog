@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Le Monde.fr -
+	{{article.title}}
+{% endblock %}
+{% block body %}
+
+	<section class="article">
+
+		<article>
+			<div class="container">
+				<h1>{{article.title}}</h1>
+				<p>Publié le :
+					{{article.createdAt|date("d/m/y")}}</p>
+				<img src="{{article.url}}" class="img-responsive" alt=" ">
+				<small>
+					<p>{{article.description}}</p>
+				</small>
+				<p>{{article.content|raw}}</p>
+
+
+				<a href="{{path("lemonde_edit", {'id': article.Id})}}" class="btn btn-primary " role="button">Modifier</a>
+
+				<div style="line-;width:1050px;height:150px;line-height:3em;overflow:auto;padding:5px;">
+
+					<ul>
+						{% for comment in article.comments %}
+							<li>
+								{{comment.author}}
+								à écrit le
+								{{comment.publishedAt|date("d/m/y")}}
+								:
+								{{comment.content}}
+
+							</li>
+
+						{% endfor %}
+					</ul>
+				</div>
+
+				{{form_start(form)}}
+				{{form_widget(form)}}
+				<button type="submit" class="btn btn-success">Commenter</button>
+				{{form_end(form)}}
+			</div>
+		</article>
+	</section>
+
+{% endblock %}

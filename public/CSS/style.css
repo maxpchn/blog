@@ -1,0 +1,14 @@
+footer{
+    background: #2c3e50;
+}
+
+hr{
+    height: 2px;
+    background-color: white;
+    border: none;
+}
+
+a {
+text-decoration: none;
+color: white;
+}

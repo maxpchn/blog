@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	{% if editMode %}
+		Le Monde.fr - Modification de l'article
+	{% else %}
+		Le Monde.fr - Création de l'article
+	{% endif %}
+{% endblock %}
+
+
+{% block body %}
+	{% if editMode %}
+		<h1>Modification de l'article</h1>
+	{% else %}
+		<h1>Création de l'article</h1>
+	{% endif %}
+
+	{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+	{{form_start(form)}}
+	{{form_widget(form)}}
+
+	{% if editMode %}
+		<button class="submit btn btn-success">Modifier</button>
+	{% else %}
+		<button class="submit btn btn-success">Créer</button>
+	{% endif %}
+	{{form_end(form)}}
+	<p></p>
+
+{% endblock %}

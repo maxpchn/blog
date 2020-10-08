@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Le Monde.fr - Accueil
+{% endblock %}
+
+{% block body  %}
+	<div class="container">
+		<div class="row">
+			{% for article in articles %}
+				<div class="col-6">
+					<div class="jumbotron">
+						<h2>{{article.title}}</h2>
+						<p>Publié le :
+							{{article.createdAt|date("d/m/y")}}</p>
+						<img src="{{article.url}}" alt="">
+						<p>{{article.description|raw}}</p>
+						<p>{{article.comments|length}}
+							{% if article.comments|length > 1 %}commentraires
+							{% else %}
+								commentraire</p>
+						{% endif %}
+
+						<p>
+							<a class="btn btn-primary" href="{{path("leMonde_view", {id:article.id})}}">Lire la suite</a>
+						</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		*pagination en cours*
+		{{ knp_pagination_render(articles)}}
+
+	</div>
+{% endblock %}
